@@ -15,8 +15,8 @@ class DbHandler {
       onCreate: (db, version) {
         db.execute(
           '''
-create table databasetable (
-id interger
+CREATE TABLE databasetable (
+id INTEGER PRIMARY KEY,
 )
 '''
         );
