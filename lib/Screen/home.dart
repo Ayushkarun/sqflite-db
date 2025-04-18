@@ -12,18 +12,47 @@ class _sqldbState extends State<sqldb> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sqlflite DB'),
-      ),
-     body: Center(
-      child: ElevatedButton(onPressed: ()async{
-       ///await DbHandler().insertData();
-      final data = await DbHandler().readData();
-      print(data);
-      }, 
-      child: Text("Insert")),
+      appBar: AppBar(title: Text('Sqlflite DB')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                await DbHandler().insertData(5, 'ayush', 23);
+                //await DbHandler().insertData();
+              },
+              child: Text("Insert"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                final data = await DbHandler().readData();
+                print(data);
+              },
+              child: Text("Read"),
+            ),
 
-     ),
+            ElevatedButton(
+              onPressed: () async {
+                await DbHandler().deleteData(4);
+                print('data deleted');
+              },
+              child: Text("Delete"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await DbHandler().updateData(3, {
+                  'id': 3,
+                  'name': 'ads',
+                  'age': 22,
+                });
+                print('updated data');
+              },
+              child: Text("update"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

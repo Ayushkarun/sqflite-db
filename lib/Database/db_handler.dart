@@ -30,18 +30,48 @@ age INTEGER
     );
     return _database;
   }
-insertData() async{
+insertData(int id,String name,int age) async{
 Database? db= await database;
-db!.insert('databasetable', {
-  'id':1,
-  'name':'ayush',
-  'age':23
-});
+Map<String,Object?> map=
+{
+  'id':id,
+  'name':name,
+  'age':age
+};
+db!.insert('databasetable', map);
 }
+
+// insertData() async{
+// Database? db= await database;
+// db!.insert('databasetable', {
+//   'id':2,
+//   'name':'ayushk',
+//   'age':24
+// });
+// }
+
 
 readData() async{
 Database? db= await database;
 final list=await db!.query('databasetable');
 return list;
 }
+
+deleteData(int id) async{
+Database? db= await database;
+
+await db!.delete('databasetable',
+where: 'id = ?',
+whereArgs: [id]
+);
+}
+
+updateData(int id,Map<String, Object> data) async{
+  Database? db= await database;
+  await db!.update('databasetable', data,
+  where: 'id =?',
+  whereArgs: [id]);
+}
+
+
 }
