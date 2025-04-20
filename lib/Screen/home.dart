@@ -1,3 +1,4 @@
+//In this data is already set on the code not by user passing
 import 'package:flutter/material.dart';
 import 'package:sql/Database/db_handler.dart';
 
